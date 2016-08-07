@@ -28,7 +28,7 @@
         function lastPre() {
             var preAll = document.body.querySelectorAll('pre');
             var pre = preAll[preAll.length - 1];
-            document.write(pre.innerText);
+            eval(pre.innerText);
         }
     </script>
 
