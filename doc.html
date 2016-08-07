@@ -24,6 +24,13 @@
     <script src="https://microsoft.github.io/maker.js/external/codemirror/mode/javascript/javascript.js"></script>
 
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+        function lastPre() {
+            var preAll = document.body.querySelectorAll('pre');
+            var pre = preAll[preAll.length - 1];
+            document.write(pre.innerText);
+        }
+    </script>
 
 </head>
 
@@ -567,6 +574,9 @@
                                 <a class="fiddle" href="https://jsfiddle.net/danmarshall/nrboLkLs/" target="_blank">try it in JsFiddle &#8663;</a>
 
                                 <script>
+                                    lastPre();
+                                </script>
+                                <script>
                                     var makerjs = require('makerjs');
 
                                     var arc1 = new makerjs.paths.Arc([0, 0], 25, 0, 90);
@@ -594,8 +604,7 @@
                                 <a class="fiddle" href="https://jsfiddle.net/danmarshall/fyqpqyho/" target="_blank">try it in JsFiddle &#8663;</a>
 
                                 <script>
-                                    var pre = document.body.querySelector('pre:last-child');
-                                    document.write(pre.innerText);
+                                    lastPre();
                                 </script>
                                 
                                 <script>
@@ -693,6 +702,9 @@
 
                                 <a class="fiddle" href="https://jsfiddle.net/danmarshall/vj7uewyk/" target="_blank">try it in JsFiddle &#8663;</a>
 
+                                <script>
+                                    lastPre();
+                                </script>
                                 <script>
                                     var makerjs = require('makerjs');
 
