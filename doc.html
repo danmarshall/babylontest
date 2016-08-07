@@ -1,0 +1,1925 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Maker.js - Intermediate drawing</title>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="http://microsoft.github.io/maker.js/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="http://microsoft.github.io/maker.js/stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="http://microsoft.github.io/maker.js/stylesheets/tsd.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="http://microsoft.github.io/maker.js/stylesheets/highlight.css" media="screen" />
+    <!--<link rel="alternate" type="application/rss+xml" title="Maker.js" href="http://microsoft.github.io/maker.js/feed.xml" />-->
+    <script type="text/javascript" src="http://microsoft.github.io/maker.js/target/js/browser.maker.js"></script>
+    <script src="http://microsoft.github.io/maker.js/external/bezier-js/bezier.js"></script>
+    <script src="http://microsoft.github.io/maker.js/external/opentype/opentype.js"></script>
+
+    <link href="http://microsoft.github.io/maker.js/external/codemirror/lib/codemirror.css" rel="stylesheet" />
+    <link href="http://microsoft.github.io/maker.js/external/codemirror/theme/twilight.css" rel="stylesheet" />
+    <link href="playground.css" rel="stylesheet" />
+    <script src="http://microsoft.github.io/maker.js/external/pep/pep.js"></script>
+    <script src="http://microsoft.github.io/maker.js/external/marked/marked.js"></script>
+    <script src="http://microsoft.github.io/maker.js/external/codemirror/lib/codemirror.js"></script>
+    <script src="http://microsoft.github.io/maker.js/external/codemirror/mode/javascript/javascript.js"></script>
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="inner">
+            <a href="http://microsoft.github.io/maker.js"><img class="logo" src="http://microsoft.github.io/maker.js/images/makerjs-blue.png" /></a>
+            <h2>Maker.js, a <a href="http://microsoft.com/garage">Microsoft Garage</a> project, is a JavaScript library for creating and sharing modular line drawings for CNC and laser cutters.</h2>
+            <a href="https://github.com/Microsoft/maker.js" class="button"><small>View project on</small> GitHub</a>
+            <ul>
+                <li><a href="http://microsoft.github.io/maker.js/#content">Features</a></li>
+                <li><a href="http://microsoft.github.io/maker.js/demos/#content">Demos</a></li>
+                <li><a href="http://microsoft.github.io/maker.js/docs/#content">Documentation</a></li>
+                <li><a href="https://github.com/Microsoft/maker.js">Source&nbsp;Code</a></li>
+            </ul>
+
+            <a class="github-button" href="https://github.com/Microsoft/maker.js" data-style="mega" data-count-href="/Microsoft/maker.js/stargazers" data-count-api="/repos/Microsoft/maker.js#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star Microsoft/maker.js on GitHub">Star</a>
+
+        </div>
+    </header>
+
+    <a name="content"></a>
+
+    <div id="content-wrapper">
+        <div class="inner clearfix">
+            <section id="main-content">
+
+                <h1>Intermediate drawing</h1>
+
+                <div class="container container-main toggle-visibilityprivate toggle-public">
+                    <section class="xtsd-panel-group tsd-index-group">
+                        <section class="tsd-panel tsd-index-panel">
+                            <div class="tsd-index-content">
+                                <section class="tsd-index-section ">
+                                    <ul class="tsd-index-list">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <li class="tsd-kind-variable tsd-parent-kind-module"><a href="#Point functions" class="tsd-kind-icon">Point functions</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <li class="tsd-kind-variable tsd-parent-kind-module"><a href="#Scaling" class="tsd-kind-icon">Scaling</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <li class="tsd-kind-variable tsd-parent-kind-module"><a href="#Rotating" class="tsd-kind-icon">Rotating</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <li class="tsd-kind-variable tsd-parent-kind-module"><a href="#Mirroring" class="tsd-kind-icon">Mirroring</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <li class="tsd-kind-variable tsd-parent-kind-module"><a href="#SVG styling" class="tsd-kind-icon">SVG styling</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <li class="tsd-kind-variable tsd-parent-kind-module"><a href="#Measuring" class="tsd-kind-icon">Measuring</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <li class="tsd-kind-variable tsd-parent-kind-module"><a href="#Originating" class="tsd-kind-icon">Originating</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <li class="tsd-kind-variable tsd-parent-kind-module"><a href="#Modifying models" class="tsd-kind-icon">Modifying models</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    </ul>
+                                </section>
+                            </div>
+                        </section>
+                    </section>
+
+                    <section class="tsd-panel-group tsd-member-group ">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <section class="tsd-panel tsd-member">
+                            <a name="Point functions"></a>
+                            <h3>Point functions</h3>
+                            <div class="tsd-comment tsd-typography">
+                                <p>
+                                    Browse the <a href="http://microsoft.github.io/maker.js/api/modules/makerjs.point.html#content">makerjs.point module</a> API documentation to see the full list of point functions, such as adding and subtracting points.
+                                </p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">10</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">p3</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">point</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">);</span></code></pre>
+                                </figure>
+
+
+                            </div>
+                        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <section class="tsd-panel tsd-member">
+                            <a name="Scaling"></a>
+                            <h3>Scaling</h3>
+                            <div class="tsd-comment tsd-typography">
+                                <p>
+                                    To proportionately scale a simple point, use <a href="http://microsoft.github.io/maker.js/api/modules/makerjs.point.html#scale">makerjs.point.scale</a>.
+                                    To proportionately scale paths and models, use these functions:
+                                </p>
+
+                                <ul>
+                                    <li><a href="http://microsoft.github.io/maker.js/api/modules/makerjs.path.html#scale">makerjs.path.scale</a>(path: object, scaleValue: number)</li>
+                                    <li><a href="http://microsoft.github.io/maker.js/api/modules/makerjs.model.html#scale">makerjs.model.scale</a>(model: object, scaleValue: number)</li>
+                                </ul>
+
+                                <p>Each of these functions return the original object, so that we can "chain" on the same line of code.</p>
+
+                                <p>Scale path example:</p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">arc1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Arc</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">arc2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Arc</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">([</span><span class="nx">arc1</span><span class="p">,</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">path</span><span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="nx">arc2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="https://jsfiddle.net/danmarshall/nrboLkLs/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    var arc1 = new makerjs.paths.Arc([0, 0], 25, 0, 90);
+                                    var arc2 = new makerjs.paths.Arc([0, 0], 25, 0, 90);
+
+                                    var svg = makerjs.exporter.toSVG([arc1, makerjs.path.scale(arc2, 2)]);
+
+                                    document.write(svg);
+                                </script>
+
+                                <p>Scale model example:</p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">model</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="na">models</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="na">inner</span><span class="p">:</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span>
+                                    <span class="na">outer</span><span class="p">:</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="mf">1.7</span><span class="p">)</span>
+                                    <span class="p">}</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="nx">model</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="https://jsfiddle.net/danmarshall/fyqpqyho/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    var model = {
+                                        models: {
+                                            inner: new makerjs.models.Polygon(6, 40),
+                                            outer: makerjs.model.scale(new makerjs.models.Polygon(6, 40), 1.7)
+                                        }
+                                    };
+
+                                    var svg = makerjs.exporter.toSVG(model);
+
+                                    document.write(svg);
+                                </script>
+
+                            </div>
+                        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <section class="tsd-panel tsd-member">
+                            <a name="Rotating"></a>
+                            <h3>Rotating</h3>
+                            <div class="tsd-comment tsd-typography">
+                                <p>
+                                    To rotate a single point, see <a href="http://microsoft.github.io/maker.js/api/modules/makerjs.point.html#frompolar">makerjs.point.fromPolar</a>
+                                    and <a href="http://microsoft.github.io/maker.js/api/modules/makerjs.point.html#rotate">makerjs.point.rotate</a> depending on what you are trying to achieve.
+                                </p>
+
+                                <p>
+                                    You can rotate paths and models with these functions:
+                                </p>
+
+                                <ul>
+                                    <li><a href="http://microsoft.github.io/maker.js/api/modules/makerjs.path.html#rotate">makerjs.path.rotate</a>(path: object, angleInDegrees: number, rotationOrigin: point)</li>
+                                    <li><a href="http://microsoft.github.io/maker.js/api/modules/makerjs.model.html#rotate">makerjs.model.rotate</a>(model: object, angleInDegrees: number, rotationOrigin: point)</li>
+                                </ul>
+
+                                <p>Each of these functions return the original object, so that we can "chain" on the same line of code.</p>
+
+                                <p>Rotate path example:</p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">line1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Line</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">line2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Line</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">paths</span> <span class="o">=</span> <span class="p">[</span><span class="nx">line1</span><span class="p">,</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">path</span><span class="p">.</span><span class="nx">rotate</span><span class="p">(</span><span class="nx">line2</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">])];</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="nx">paths</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="https://jsfiddle.net/danmarshall/vj7uewyk/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    var line1 = new makerjs.paths.Line([0, 0], [100, 0]);
+                                    var line2 = new makerjs.paths.Line([0, 0], [100, 0]);
+
+                                    var paths = [line1, makerjs.path.rotate(line2, -30, [100, 0])];
+
+                                    var svg = makerjs.exporter.toSVG(paths);
+
+                                    document.write(svg);
+                                </script>
+
+                                <p>Rotate model example:</p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">rect1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Rectangle</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+<span class="nx">makerjs</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">rotate</span><span class="p">(</span><span class="nx">rect1</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="nx">rect1</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="https://jsfiddle.net/danmarshall/8g6r3yjq/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    var rect1 = new makerjs.models.Rectangle(40, 80);
+
+                                    makerjs.model.rotate(rect1, 45, [0, 0]);
+
+                                    var svg = makerjs.exporter.toSVG(rect1);
+
+                                    document.write(svg);
+                                </script>
+
+                            </div>
+                        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <section class="tsd-panel tsd-member">
+                            <a name="Mirroring"></a>
+                            <h3>Mirroring</h3>
+                            <div class="tsd-comment tsd-typography">
+                                <p>
+                                    Use <a href="http://microsoft.github.io/maker.js/api/modules/makerjs.angle.html#mirror">makerjs.angle.mirror</a> to get a mirror of an angle, and
+                                    <a href="http://microsoft.github.io/maker.js/docs/api/modules/makerjs.point.html#mirror">makerjs.point.mirror</a> to get a mirror of a simple point.
+                                </p>
+
+                                <p>
+                                    You can create a mirrored copy of paths and models with the following functions.
+                                    The mirroring can occur on the x axis, the y axis, or both.
+                                </p>
+
+                                <ul>
+                                    <li><a href="http://microsoft.github.io/maker.js/api/modules/makerjs.path.html#mirror">makerjs.path.mirror</a>(path: object, mirrorX: boolean, mirrorY: boolean)</li>
+                                    <li><a href="http://microsoft.github.io/maker.js/api/modules/makerjs.model.html#mirror">makerjs.model.mirror</a>(model: object, mirrorX: boolean, mirrorY: boolean)</li>
+                                </ul>
+
+                                <p>Each of these functions returns a new object and does not modify the original.</p>
+
+                                <p>Mirror path example:</p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">line1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Line</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">line2</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">path</span><span class="p">.</span><span class="nx">mirror</span><span class="p">(</span><span class="nx">line1</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">paths</span> <span class="o">=</span> <span class="p">[</span><span class="nx">line1</span><span class="p">,</span> <span class="nx">line2</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="nx">paths</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="https://jsfiddle.net/danmarshall/p6aj2ky6/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    var line1 = new makerjs.paths.Line([0, 0], [100, 100]);
+                                    var line2 = makerjs.path.mirror(line1, true, false);
+
+                                    var paths = [line1, line2];
+
+                                    var svg = makerjs.exporter.toSVG(paths);
+
+                                    document.write(svg);
+                                </script>
+
+                                <p>Mirror model example:</p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">ovalArc1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">OvalArc</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">model</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="na">models</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="na">ovalArc1</span><span class="p">:</span> <span class="nx">ovalArc1</span><span class="p">,</span>
+                                    <span class="na">ovalArc2</span><span class="p">:</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">mirror</span><span class="p">(</span><span class="nx">ovalArc1</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+                                    <span class="p">}</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="nx">model</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="https://jsfiddle.net/danmarshall/h9fysusv/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    var ovalArc1 = new makerjs.models.OvalArc(45, 135, 50, 10);
+
+                                    var model = {
+                                        models: {
+                                            ovalArc1: ovalArc1,
+                                            ovalArc2: makerjs.model.mirror(ovalArc1, false, true)
+                                        }
+                                    };
+
+                                    var svg = makerjs.exporter.toSVG(model);
+
+                                    document.write(svg);
+                                </script>
+
+                                <p>
+                                    Hint: When creating symmetrical models, it may be easier to create one half, and then use mirror to generate the other half.
+                                </p>
+                            </div>
+                        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <section class="tsd-panel tsd-member">
+                            <a name="SVG styling"></a>
+                            <h3>SVG styling</h3>
+                            <div class="tsd-comment tsd-typography">
+                                <p>
+                                    It may be helpful to add visual styles to your drawing when debugging.
+                                    You can do this using CSS and referencing elements in your SVG.
+                                    Of course this will only add style in the browser,
+                                    it will not affect SVG exported to a file for the laser cutter.
+                                </p>
+
+                                <p>
+                                    The keys you use within your <b>paths</b> and <b>models</b> collections become an <b>id</b> attribute
+                                    in the generated SVG. For Example:
+                                </p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">model</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="na">paths</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="na">circle1</span><span class="p">:</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Circle</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">30</span><span class="p">)</span>
+                                    <span class="p">},</span>
+                                    <span class="na">models</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="na">bigOvalArc</span><span class="p">:</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">OvalArc</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+                                    <span class="p">}</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="p">{</span><span class="na">useSvgPathOnly</span><span class="p">:</span> <span class="kc">false</span><span class="p">});</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;hr/&gt;&lt;code&gt;'</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;/g</span><span class="p">,</span> <span class="s1">'&amp;lt;'</span><span class="p">));</span> <span class="c1">//show raw xml in browser</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">'&lt;/code&gt;&lt;hr/&gt;'</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="https://jsfiddle.net/danmarshall/5u7Lr02n/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    var model = {
+                                        paths: {
+                                            circle1: new makerjs.paths.Circle([0, 0], 30)
+                                        },
+                                        models: {
+                                            bigOvalArc: new makerjs.models.OvalArc(120, 60, 50, 10)
+                                        }
+                                    };
+
+                                    var svg = makerjs.exporter.toSVG(model, { useSvgPathOnly: false });
+
+                                    document.write(svg);
+                                    document.write('<hr/><code>');
+                                    document.write(svg.replace(/</g, '&lt;')); //show raw xml in browser
+                                    document.write('</code><hr/>');
+                                </script>
+
+                                <p>
+                                    We see that <i>circle1</i> was a key within our <b>paths</b> collection and was translated into an <b>id</b>
+                                    in an SVG element. We also see that the model <i>bigOvalArc</i> has geen translated to an SVG group with that id.
+                                </p>
+
+                                <p>
+                                    We can use a CSS id selector and the <b>stroke</b> property to give them individual color:
+                                </p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-html" data-lang="html"><span class="nt">&lt;style </span><span class="na">type=</span><span class="s">"text/css"</span><span class="nt">&gt;</span>
+                                    <span class="nt">svg</span> <span class="nf">#circle1</span> <span class="p">{</span>
+                                    <span class="py">stroke</span><span class="p">:</span> <span class="no">lime</span><span class="p">;</span>
+                                    <span class="p">}</span>
+                                    <span class="nt">svg</span> <span class="nf">#bigOvalArc</span> <span class="p">{</span>
+                                    <span class="py">stroke</span><span class="p">:</span> <span class="no">orange</span><span class="p">;</span>
+                                    <span class="p">}</span>
+                                    <span class="nt">svg</span> <span class="nf">#EndCap</span> <span class="p">{</span>
+                                    <span class="py">stroke</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span>
+                                    <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span></code></pre>
+                                </figure>
+
+                                <style type="text/css">
+                                    svg #circle1 {
+                                        stroke: lime;
+                                    }
+
+                                    svg #bigOvalArc {
+                                        stroke: orange;
+                                    }
+
+                                    svg #EndCap {
+                                        stroke: black;
+                                    }
+                                </style>
+
+
+                            </div>
+                        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <section class="tsd-panel tsd-member">
+                            <a name="Measuring"></a>
+                            <h3>Measuring</h3>
+                            <div class="tsd-comment tsd-typography">
+                                <p>
+                                    Browse to the <a href="http://microsoft.github.io/maker.js/api/modules/makerjs.measure.html">makerjs.measure</a> module documentation to see all functions related to measuring.
+                                </p>
+
+                                <p>
+                                    To get the bounding rectangle of a path or a model, use:
+                                </p>
+
+                                <ul>
+                                    <li>makerjs.measure.pathExtents(path: object)</li>
+                                    <li>makerjs.model.rotate(model: object)</li>
+                                </ul>
+
+                                <p>These functions return an object with <b>high</b> and <b>low</b> points.</p>
+
+                                <p>Measure path example:</p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">arc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Arc</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">135</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">measure</span><span class="p">.</span><span class="nx">pathExtents</span><span class="p">(</span><span class="nx">arc</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">totalWidth</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">high</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="nx">m</span><span class="p">.</span><span class="nx">low</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">totalHeight</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">high</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nx">m</span><span class="p">.</span><span class="nx">low</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">measureRect</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Rectangle</span><span class="p">(</span><span class="nx">totalWidth</span><span class="p">,</span> <span class="nx">totalHeight</span><span class="p">);</span>
+<span class="nx">measureRect</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">low</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">model</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="na">paths</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="na">arc</span><span class="p">:</span> <span class="nx">arc</span>
+                                    <span class="p">},</span>
+                                    <span class="na">models</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="na">measureRect</span><span class="p">:</span> <span class="nx">measureRect</span>
+                                    <span class="p">}</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="nx">model</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="https://jsfiddle.net/danmarshall/1yvfzmgn/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    var arc = new makerjs.paths.Arc([0, 0], 100, 45, 135);
+                                    var m = makerjs.measure.pathExtents(arc);
+
+                                    var totalWidth = m.high[0] - m.low[0];
+                                    var totalHeight = m.high[1] - m.low[1];
+
+                                    var measureRect = new makerjs.models.Rectangle(totalWidth, totalHeight);
+                                    measureRect.origin = m.low;
+
+                                    var model = {
+                                        paths: {
+                                            arc: arc
+                                        },
+                                        models: {
+                                            measureRect: measureRect
+                                        }
+                                    };
+
+                                    var svg = makerjs.exporter.toSVG(model);
+
+                                    document.write(svg);
+                                </script>
+
+                                <p>Measure model example:</p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">oval</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="nx">makerjs</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">rotate</span><span class="p">(</span><span class="nx">oval</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">measure</span><span class="p">.</span><span class="nx">modelExtents</span><span class="p">(</span><span class="nx">oval</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">totalWidth</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">high</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="nx">m</span><span class="p">.</span><span class="nx">low</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">totalHeight</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">high</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="nx">m</span><span class="p">.</span><span class="nx">low</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">measureRect</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Rectangle</span><span class="p">(</span><span class="nx">totalWidth</span><span class="p">,</span> <span class="nx">totalHeight</span><span class="p">);</span>
+<span class="nx">measureRect</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">low</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">model</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="na">models</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="na">measureRect</span><span class="p">:</span> <span class="nx">measureRect</span><span class="p">,</span>
+                                    <span class="na">oval</span><span class="p">:</span> <span class="nx">oval</span>
+                                    <span class="p">}</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="nx">model</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="https://jsfiddle.net/danmarshall/9hyo87d8/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    var oval = new makerjs.models.Oval(100, 20);
+                                    makerjs.model.rotate(oval, 30);
+                                    var m = makerjs.measure.modelExtents(oval);
+
+                                    var totalWidth = m.high[0] - m.low[0];
+                                    var totalHeight = m.high[1] - m.low[1];
+
+                                    var measureRect = new makerjs.models.Rectangle(totalWidth, totalHeight);
+                                    measureRect.origin = m.low;
+
+                                    var model = {
+                                        models: {
+                                            measureRect: measureRect,
+                                            oval: oval
+                                        }
+                                    };
+
+                                    var svg = makerjs.exporter.toSVG(model);
+
+                                    document.write(svg);
+                                </script>
+
+                                <p>
+                                    We can highlight the bounding box with some CSS:
+                                </p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-html" data-lang="html"><span class="nt">&lt;style </span><span class="na">type=</span><span class="s">"text/css"</span><span class="nt">&gt;</span>
+                                    <span class="nt">svg</span> <span class="nt">g</span> <span class="nf">#measureRect</span> <span class="p">{</span>
+                                    <span class="py">stroke</span><span class="p">:</span> <span class="no">lightblue</span><span class="p">;</span>
+                                    <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span></code></pre>
+                                </figure>
+
+                                <style type="text/css">
+                                    svg g #measureRect {
+                                        stroke: lightblue;
+                                    }
+                                </style>
+
+
+                            </div>
+                        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <section class="tsd-panel tsd-member">
+                            <a name="Originating"></a>
+                            <h3>Originating</h3>
+                            <div class="tsd-comment tsd-typography">
+                                <p>
+                                    To move a model or a path, you simply change it's <b>origin</b> property. A path within a model is referenced relatively to its parent model. There may be times when you want all objects to be within the same coordinate space.
+                                    Let's create a simple demonstration model:
+                                </p>
+
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">box</span><span class="p">(</span><span class="nx">origin</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="na">outer</span><span class="p">:</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">RoundRectangle</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                                    <span class="na">inner</span><span class="p">:</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">RoundRectangle</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                                    <span class="p">};</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">inner</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">];</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span> <span class="nx">origin</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">box1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">box</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">box2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">box</span><span class="p">([</span><span class="mi">150</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">model</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="na">models</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="na">box1</span><span class="p">:</span> <span class="nx">box1</span><span class="p">,</span>
+                                    <span class="na">box2</span><span class="p">:</span> <span class="nx">box2</span>
+                                    <span class="p">}</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="nx">model</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="https://jsfiddle.net/danmarshall/o0rfn400/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    function box(origin) {
+                                        this.models = {
+                                            outer: new makerjs.models.RoundRectangle(100, 100, 1),
+                                            inner: new makerjs.models.RoundRectangle(50, 50, 1)
+                                        };
+                                        this.models.inner.origin = [25, 25];
+                                        this.origin = origin;
+                                    }
+
+                                    var box1 = new box([0, 0]);
+                                    var box2 = new box([150, 0]);
+
+                                    var model = {
+                                        models: {
+                                            box1: box1,
+                                            box2: box2
+                                        }
+                                    };
+
+                                    var svg = makerjs.exporter.toSVG(model);
+
+                                    document.write(svg);
+                                </script>
+
+                                <p>
+                                    In this example, both <code>box1.models.inner.paths.Left.origin</code> and <code>box2.models.inner.paths.Left.origin</code> have an origin of <code>[0, 49]</code>
+                                    even though they are not in the same place, because they are located relative to the model that contains them. To make all models and paths occupy a singular coordinate space,
+                                    we can use <a href="http://microsoft.github.io/maker.js/api/modules/makerjs.model.html#originate">makerjs.model.originate</a>:
+                                </p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">box</span><span class="p">(</span><span class="nx">origin</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="na">outer</span><span class="p">:</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">RoundRectangle</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                                    <span class="na">inner</span><span class="p">:</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">RoundRectangle</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                                    <span class="p">};</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">inner</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">];</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span> <span class="nx">origin</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">box1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">box</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">box2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">box</span><span class="p">([</span><span class="mi">150</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">model</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">originate</span><span class="p">({</span>
+                                    <span class="na">models</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="na">box1</span><span class="p">:</span> <span class="nx">box1</span><span class="p">,</span>
+                                    <span class="na">box2</span><span class="p">:</span> <span class="nx">box2</span>
+                                    <span class="p">}</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="nx">model</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="https://jsfiddle.net/danmarshall/kb8xt4yn/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    function box(origin) {
+                                        this.models = {
+                                            outer: new makerjs.models.RoundRectangle(100, 100, 1),
+                                            inner: new makerjs.models.RoundRectangle(50, 50, 1)
+                                        };
+                                        this.models.inner.origin = [25, 25];
+                                        this.origin = origin;
+                                    }
+
+                                    var box1 = new box([0, 0]);
+                                    var box2 = new box([150, 0]);
+
+                                    var model = makerjs.model.originate({
+                                        models: {
+                                            box1: box1,
+                                            box2: box2
+                                        }
+                                    });
+
+                                    var svg = makerjs.exporter.toSVG(model);
+
+                                    document.write(svg);
+                                </script>
+
+                                <p>
+                                    Now <code>box1.models.inner.paths.Left.origin</code> and <code>box2.models.inner.paths.Left.origin</code> have the origins <code>[25, 74]</code> and <code>[175, 74]</code>.
+                                </p>
+
+                            </div>
+                        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <section class="tsd-panel tsd-member">
+                            <a name="Modifying models"></a>
+                            <h3>Modifying models</h3>
+                            <div class="tsd-comment tsd-typography">
+                                <p>
+                                    We know that models are relatively simple objects with a well known recursive structure.
+                                    This allows us to modify them for different purposes. Let's modify and combine two different models
+                                    in one drawing.
+                                </p>
+
+                                <p>
+                                    For this example we will use ovals to make an oval L shape. We begin by creating a model function that has two ovals:
+                                </p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">ovalL</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="kd">var</span> <span class="nx">ovalH</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">);</span>
+                                    <span class="kd">var</span> <span class="nx">ovalV</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">thickness</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="na">h</span><span class="p">:</span> <span class="nx">ovalH</span><span class="p">,</span> <span class="na">v</span><span class="p">:</span> <span class="nx">ovalV</span>
+                                    <span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="k">new</span> <span class="nx">ovalL</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">37</span><span class="p">));</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="http://jsfiddle.net/danmarshall/qf4x1gqx/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    function ovalL(width, height, thickness) {
+                                        var ovalH = new makerjs.models.Oval(width, thickness);
+                                        var ovalV = new makerjs.models.Oval(thickness, height);
+
+                                        this.models = {
+                                            h: ovalH, v: ovalV
+                                        };
+                                    }
+
+                                    var svg = makerjs.exporter.toSVG(new ovalL(100, 100, 37));
+
+                                    document.write(svg);
+                                </script>
+
+                                <p>
+                                    There are overlapping arcs in the lower left corner. We can remove them if we know their id and position in the
+                                    heirarchy. There are several ways we can inspect this model, here are a few:
+                                </p>
+
+                                <ul>
+                                    <li>
+                                        Look at the code which created it. This may involve deep lookups. For example, the <a href="https://github.com/Microsoft/maker.js/blob/master/src/models/Oval.ts">Oval source code</a>
+                                        references the <a href="https://github.com/Microsoft/maker.js/blob/master/src/models/RoundRectangle.ts">RoundRectangle source code</a>.
+                                    </li>
+                                    <li>Use the browser's console, or JavaScript debugger to set a breakpoint in your model.</li>
+                                    <li>Use the browser's DOM inspector to traverse the rendered SVG.</li>
+                                    <li>Output the raw <a href="https://jsfiddle.net/danmarshall/rz8ngf7L/" target="_blank">JSON</a> or <a href="https://jsfiddle.net/danmarshall/5u7Lr02n/" target="_blank">SVG</a> on screen.</li>
+                                </ul>
+
+                                <p>
+                                    By looking at the source code we know that an Oval is a RoundRectangle and that the ids for arcs are <i>BottomLeft</i>, <i>BottomRight</i>, <i>TopLeft</i> and <i>TopRight</i>.
+                                    The ids for the sides are <i>Left</i>, <i>Right</i>, <i>Top</i> and <i>Bottom</i>. Also, we need to note the orientation of these lines so we know which are origin and end points.
+                                </p>
+
+                                <p>
+                                    To remove a path we use the JavaScript <b>delete</b> keyword:
+                                </p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">ovalL</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="kd">var</span> <span class="nx">ovalH</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">);</span>
+                                    <span class="kd">var</span> <span class="nx">ovalV</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">thickness</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+                                    <span class="c1">//delete the lower arcs from the vertical oval</span>
+                                    <span class="k">delete</span> <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomLeft</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomRight</span><span class="p">;</span>
+                                    <span class="c1">//delete the inside arc of the horizontal</span>
+                                    <span class="k">delete</span> <span class="nx">ovalH</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">TopLeft</span><span class="p">;</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="na">h</span><span class="p">:</span> <span class="nx">ovalH</span><span class="p">,</span> <span class="na">v</span><span class="p">:</span> <span class="nx">ovalV</span>
+                                    <span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="k">new</span> <span class="nx">ovalL</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">37</span><span class="p">));</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="http://jsfiddle.net/danmarshall/qf4x1gqx/1/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    function ovalL(width, height, thickness) {
+                                        var ovalH = new makerjs.models.Oval(width, thickness);
+                                        var ovalV = new makerjs.models.Oval(thickness, height);
+
+                                        //delete the lower arcs from the vertical oval
+                                        delete ovalV.paths.BottomLeft;
+                                        delete ovalV.paths.BottomRight;
+
+                                        //delete the inside arc of the horizontal
+                                        delete ovalH.paths.TopLeft;
+
+                                        this.models = {
+                                            h: ovalH, v: ovalV
+                                        };
+                                    }
+
+                                    var svg = makerjs.exporter.toSVG(new ovalL(100, 100, 37));
+
+                                    document.write(svg);
+                                </script>
+
+                                <p>
+                                    The next step is to eliminate the overlap in the lines. Here are two approaches to do this:
+                                </p>
+
+                                <p>
+                                    Adjust only the x or y component of the point:
+                                </p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">ovalL</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="kd">var</span> <span class="nx">ovalH</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">);</span>
+                                    <span class="kd">var</span> <span class="nx">ovalV</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">thickness</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+                                    <span class="k">delete</span> <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomLeft</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomRight</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">ovalH</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">TopLeft</span><span class="p">;</span>
+                                    <span class="c1">//move the x of the horizontal's top</span>
+                                    <span class="nx">ovalH</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Top</span><span class="p">.</span><span class="nx">end</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">thickness</span><span class="p">;</span>
+                                    <span class="c1">//move the y of the vertical's right</span>
+                                    <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Right</span><span class="p">.</span><span class="nx">origin</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">thickness</span><span class="p">;</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="na">h</span><span class="p">:</span> <span class="nx">ovalH</span><span class="p">,</span> <span class="na">v</span><span class="p">:</span> <span class="nx">ovalV</span>
+                                    <span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="k">new</span> <span class="nx">ovalL</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">37</span><span class="p">));</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="http://jsfiddle.net/danmarshall/qf4x1gqx/2/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    function ovalL(width, height, thickness) {
+                                        var ovalH = new makerjs.models.Oval(width, thickness);
+                                        var ovalV = new makerjs.models.Oval(thickness, height);
+
+                                        delete ovalV.paths.BottomLeft;
+                                        delete ovalV.paths.BottomRight;
+                                        delete ovalH.paths.TopLeft;
+
+                                        //move the x of the horizontal's top
+                                        ovalH.paths.Top.end[0] = thickness;
+
+                                        //move the y of the vertical's right
+                                        ovalV.paths.Right.origin[1] = thickness;
+
+                                        this.models = {
+                                            h: ovalH, v: ovalV
+                                        };
+                                    }
+
+                                    var svg = makerjs.exporter.toSVG(new ovalL(100, 100, 37));
+
+                                    document.write(svg);
+                                </script>
+
+                                <p>
+                                    Share a point on both lines:
+                                </p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">ovalL</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="kd">var</span> <span class="nx">ovalH</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">);</span>
+                                    <span class="kd">var</span> <span class="nx">ovalV</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">thickness</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+                                    <span class="k">delete</span> <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomLeft</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomRight</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">ovalH</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">TopLeft</span><span class="p">;</span>
+                                    <span class="c1">//set to the same point</span>
+                                    <span class="nx">ovalH</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Top</span><span class="p">.</span><span class="nx">end</span> <span class="o">=</span>
+                                    <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Right</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span>
+                                    <span class="p">[</span><span class="nx">thickness</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">];</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="na">h</span><span class="p">:</span> <span class="nx">ovalH</span><span class="p">,</span> <span class="na">v</span><span class="p">:</span> <span class="nx">ovalV</span>
+                                    <span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="k">new</span> <span class="nx">ovalL</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">37</span><span class="p">));</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="http://jsfiddle.net/danmarshall/qf4x1gqx/3/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    function ovalL(width, height, thickness) {
+                                        var ovalH = new makerjs.models.Oval(width, thickness);
+                                        var ovalV = new makerjs.models.Oval(thickness, height);
+
+                                        delete ovalV.paths.BottomLeft;
+                                        delete ovalV.paths.BottomRight;
+                                        delete ovalH.paths.TopLeft;
+
+                                        //set to the same point
+                                        ovalH.paths.Top.end =
+                                            ovalV.paths.Right.origin =
+                                                [thickness, thickness];
+
+                                        this.models = {
+                                            h: ovalH, v: ovalV
+                                        };
+                                    }
+
+                                    var svg = makerjs.exporter.toSVG(new ovalL(100, 100, 37));
+
+                                    document.write(svg);
+                                </script>
+
+                                <hr />
+
+                                <p>
+                                    Let's progress this example further, by modifying an L shape into a C shape. Create a new model function for C, and immediately create an L within it.
+                                    The C may create a new <i>models</i> object for itself, and nest the L inside; alternatively, C can just assume L's <i>models</i> object:
+                                </p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">ovalL</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="kd">var</span> <span class="nx">ovalH</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">);</span>
+                                    <span class="kd">var</span> <span class="nx">ovalV</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">thickness</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+                                    <span class="k">delete</span> <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomLeft</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomRight</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">ovalH</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">TopLeft</span><span class="p">;</span>
+                                    <span class="nx">ovalH</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Top</span><span class="p">.</span><span class="nx">end</span> <span class="o">=</span>
+                                    <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Right</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span>
+                                    <span class="p">[</span><span class="nx">thickness</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">];</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span> <span class="o">=</span> <span class="p">{</span> <span class="na">h</span><span class="p">:</span> <span class="nx">ovalH</span><span class="p">,</span> <span class="na">v</span><span class="p">:</span> <span class="nx">ovalV</span> <span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">ovalC</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="c1">//assume the same models as L</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ovalL</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">).</span><span class="nx">models</span><span class="p">;</span>
+                                    <span class="c1">//add another oval</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">h2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">);</span>
+                                    <span class="c1">//move it to the top</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">h2</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">thickness</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="c1">//using C instead of L</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="k">new</span> <span class="nx">ovalC</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">37</span><span class="p">));</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="http://jsfiddle.net/danmarshall/qf4x1gqx/5/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    function ovalL(width, height, thickness) {
+                                        var ovalH = new makerjs.models.Oval(width, thickness);
+                                        var ovalV = new makerjs.models.Oval(thickness, height);
+                                        delete ovalV.paths.BottomLeft;
+                                        delete ovalV.paths.BottomRight;
+                                        delete ovalH.paths.TopLeft;
+                                        ovalH.paths.Top.end =
+                                            ovalV.paths.Right.origin =
+                                                [thickness, thickness];
+                                        this.models = { h: ovalH, v: ovalV };
+                                    }
+
+                                    function ovalC(width, height, thickness) {
+
+                                        //assume the same models as L
+                                        this.models = new ovalL(width, height, thickness).models;
+
+                                        //add another oval
+                                        this.models.h2 = new makerjs.models.Oval(width, thickness);
+
+                                        //move it to the top
+                                        this.models.h2.origin = [0, height - thickness];
+                                    }
+
+                                    //using C instead of L
+                                    var svg = makerjs.exporter.toSVG(new ovalC(100, 100, 37));
+
+                                    document.write(svg);
+                                </script>
+
+                                <p>
+                                    Just as before, we need to delete the overlapping paths using the <b>delete</b> keyword. Let us also make a short alias for <i>this.models</i> to save us some keystrokes:
+                                </p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">ovalL</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="kd">var</span> <span class="nx">ovalH</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">);</span>
+                                    <span class="kd">var</span> <span class="nx">ovalV</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">thickness</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+                                    <span class="k">delete</span> <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomLeft</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomRight</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">ovalH</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">TopLeft</span><span class="p">;</span>
+                                    <span class="nx">ovalH</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Top</span><span class="p">.</span><span class="nx">end</span> <span class="o">=</span>
+                                    <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Right</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span>
+                                    <span class="p">[</span><span class="nx">thickness</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">];</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span> <span class="o">=</span> <span class="p">{</span> <span class="na">h</span><span class="p">:</span> <span class="nx">ovalH</span><span class="p">,</span> <span class="na">v</span><span class="p">:</span> <span class="nx">ovalV</span> <span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">ovalC</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="c1">//set local var m for easy typing</span>
+                                    <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span> <span class="o">=</span>
+                                    <span class="k">new</span> <span class="nx">ovalL</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">).</span><span class="nx">models</span><span class="p">;</span>
+                                    <span class="nx">m</span><span class="p">.</span><span class="nx">h2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">);</span>
+                                    <span class="nx">m</span><span class="p">.</span><span class="nx">h2</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">thickness</span><span class="p">];</span>
+                                    <span class="c1">//delete overlapping arcs again</span>
+                                    <span class="k">delete</span> <span class="nx">m</span><span class="p">.</span><span class="nx">h2</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">TopLeft</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">m</span><span class="p">.</span><span class="nx">h2</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomLeft</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">m</span><span class="p">.</span><span class="nx">v</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">TopRight</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="k">new</span> <span class="nx">ovalC</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">37</span><span class="p">));</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="http://jsfiddle.net/danmarshall/qf4x1gqx/6/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    function ovalL(width, height, thickness) {
+                                        var ovalH = new makerjs.models.Oval(width, thickness);
+                                        var ovalV = new makerjs.models.Oval(thickness, height);
+                                        delete ovalV.paths.BottomLeft;
+                                        delete ovalV.paths.BottomRight;
+                                        delete ovalH.paths.TopLeft;
+                                        ovalH.paths.Top.end =
+                                            ovalV.paths.Right.origin =
+                                                [thickness, thickness];
+                                        this.models = { h: ovalH, v: ovalV };
+                                    }
+
+                                    function ovalC(width, height, thickness) {
+
+                                        //set local var m for easy typing
+                                        var m =
+                                            this.models =
+                                                new ovalL(width, height, thickness).models;
+
+                                        m.h2 = new makerjs.models.Oval(width, thickness);
+                                        m.h2.origin = [0, height - thickness];
+
+                                        //delete overlapping arcs again
+                                        delete m.h2.paths.TopLeft;
+                                        delete m.h2.paths.BottomLeft;
+                                        delete m.v.paths.TopRight;
+                                    }
+
+                                    var svg = makerjs.exporter.toSVG(new ovalC(100, 100, 37));
+
+                                    document.write(svg);
+                                </script>
+
+                                <p>
+                                    Lastly, we need our overlapping lines to meet at a common point. Notice that the new oval <i>h2</i> has a different origin the the previous ovals.
+                                    So, we must <b>originate</b> for all of the ovals to share the same coordinate space. Afterwards, we can assign the common point to both lines.
+                                </p>
+                                <p>
+                                    In the JSFiddle, try removing the call to originate to see the results without it.
+                                </p>
+
+                                <figure class="highlight">
+                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">ovalL</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="kd">var</span> <span class="nx">ovalH</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">);</span>
+                                    <span class="kd">var</span> <span class="nx">ovalV</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">thickness</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+                                    <span class="k">delete</span> <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomLeft</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomRight</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">ovalH</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">TopLeft</span><span class="p">;</span>
+                                    <span class="nx">ovalH</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Top</span><span class="p">.</span><span class="nx">end</span> <span class="o">=</span> 
+                                    <span class="nx">ovalV</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Right</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span> 
+                                    <span class="p">[</span><span class="nx">thickness</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">];</span>
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span> <span class="o">=</span> <span class="p">{</span> <span class="na">h</span><span class="p">:</span> <span class="nx">ovalH</span><span class="p">,</span> <span class="na">v</span><span class="p">:</span> <span class="nx">ovalV</span> <span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">ovalC</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> 
+                                    <span class="k">this</span><span class="p">.</span><span class="nx">models</span> <span class="o">=</span> 
+                                    <span class="k">new</span> <span class="nx">ovalL</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">).</span><span class="nx">models</span><span class="p">;</span>
+                                    <span class="nx">m</span><span class="p">.</span><span class="nx">h2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">);</span>
+                                    <span class="nx">m</span><span class="p">.</span><span class="nx">h2</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">thickness</span><span class="p">];</span>
+                                    <span class="k">delete</span> <span class="nx">m</span><span class="p">.</span><span class="nx">h2</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">TopLeft</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">m</span><span class="p">.</span><span class="nx">h2</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">BottomLeft</span><span class="p">;</span>
+                                    <span class="k">delete</span> <span class="nx">m</span><span class="p">.</span><span class="nx">v</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">TopRight</span><span class="p">;</span>
+    
+                                    <span class="c1">//h2 has paths relative to h2 origin, </span>
+                                    <span class="c1">//we need to originate to share the point</span>
+                                    <span class="nx">makerjs</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">originate</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    
+                                    <span class="c1">//share the point</span>
+                                    <span class="nx">m</span><span class="p">.</span><span class="nx">h2</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Bottom</span><span class="p">.</span><span class="nx">origin</span> <span class="o">=</span> 
+                                    <span class="nx">m</span><span class="p">.</span><span class="nx">v</span><span class="p">.</span><span class="nx">paths</span><span class="p">.</span><span class="nx">Right</span><span class="p">.</span><span class="nx">end</span> <span class="o">=</span>
+                                    <span class="p">[</span><span class="nx">thickness</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">thickness</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">exporter</span><span class="p">.</span><span class="nx">toSVG</span><span class="p">(</span><span class="k">new</span> <span class="nx">ovalC</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">37</span><span class="p">));</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">svg</span><span class="p">);</span></code></pre>
+                                </figure>
+
+                                <a class="fiddle" href="http://jsfiddle.net/danmarshall/qf4x1gqx/7/" target="_blank">try it in JsFiddle &#8663;</a>
+
+                                <script>
+                                    var makerjs = require('makerjs');
+
+                                    function ovalL(width, height, thickness) {
+                                        var ovalH = new makerjs.models.Oval(width, thickness);
+                                        var ovalV = new makerjs.models.Oval(thickness, height);
+                                        delete ovalV.paths.BottomLeft;
+                                        delete ovalV.paths.BottomRight;
+                                        delete ovalH.paths.TopLeft;
+                                        ovalH.paths.Top.end =
+                                            ovalV.paths.Right.origin =
+                                                [thickness, thickness];
+                                        this.models = { h: ovalH, v: ovalV };
+                                    }
+
+                                    function ovalC(width, height, thickness) {
+                                        var m =
+                                            this.models =
+                                                new ovalL(width, height, thickness).models;
+                                        m.h2 = new makerjs.models.Oval(width, thickness);
+                                        m.h2.origin = [0, height - thickness];
+                                        delete m.h2.paths.TopLeft;
+                                        delete m.h2.paths.BottomLeft;
+                                        delete m.v.paths.TopRight;
+
+                                        //h2 has paths relative to h2 origin,
+                                        //we need to originate to share the point
+                                        makerjs.model.originate(this);
+
+                                        //share the point
+                                        m.h2.paths.Bottom.origin =
+                                            m.v.paths.Right.end =
+                                                [thickness, height - thickness];
+                                    }
+
+                                    var svg = makerjs.exporter.toSVG(new ovalC(100, 100, 37));
+
+                                    document.write(svg);
+                                </script>
+
+                            </div>
+                        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </section>
+
+                </div>
+
+
+
+
+
+            </section>
+
+            <aside id="sidebar">
+                <a href="https://github.com/Microsoft/maker.js/zipball/master" class="button">
+                    <small>Download</small>
+                    .zip file
+                </a>
+                <a href="https://github.com/Microsoft/maker.js/tarball/master" class="button">
+                    <small>Download</small>
+                    .tar.gz file
+                </a>
+
+                <p class="repo-owner"><a href="https://github.com/Microsoft/maker.js">Maker.js</a> is maintained by <a href="https://github.com/Microsoft">Microsoft</a>.</p>
+
+                <!--<p>
+                <a href="http://microsoft.github.io/maker.js/feed.xml">RSS feed</a>
+                </p>-->
+
+                <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+            </aside>
+
+            <footer>
+                <a href="https://github.com/Microsoft">
+                    <img src="http://microsoft.github.io/maker.js/playground/microsoft.png">
+                </a>
+                <a href="https://github.com/Microsoft">Open source, from Microsoft with love.</a>
+                <a href="http://aka.ms/privacy">Privacy Statement</a> ©2016 Microsoft
+            </footer>
+
+        </div>
+    </div>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-64624544-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+</body>
+</html>
