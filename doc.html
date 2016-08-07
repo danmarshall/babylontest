@@ -594,6 +594,11 @@
                                 <a class="fiddle" href="https://jsfiddle.net/danmarshall/fyqpqyho/" target="_blank">try it in JsFiddle &#8663;</a>
 
                                 <script>
+                                    var pre = document.body.querySelector('pre:last-child');
+                                    document.write(pre.innerText);
+                                </script>
+                                
+                                <script>
                                     var makerjs = require('makerjs');
 
                                     var model = {
