@@ -1406,7 +1406,7 @@
                                 </p>
 
                                 <figure class="highlight">
-                                    <pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
+                                    <pre id="pre1"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">makerjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'makerjs'</span><span class="p">);</span>
 <span class="kd">function</span> <span class="nx">ovalL</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">)</span> <span class="p">{</span>
                                     <span class="kd">var</span> <span class="nx">ovalH</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">thickness</span><span class="p">);</span>
                                     <span class="kd">var</span> <span class="nx">ovalV</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">makerjs</span><span class="p">.</span><span class="nx">models</span><span class="p">.</span><span class="nx">Oval</span><span class="p">(</span><span class="nx">thickness</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
@@ -1435,8 +1435,26 @@
                                     var svg = makerjs.exporter.toSVG(new ovalL(100, 100, 37));
 
                                     document.write(svg);
+
+                                    function makeEdit() {
+                                        var pre = document.getElementById('pre1');
+
+                                        var codeMirrorOptions = {
+                                            lineNumbers: true,
+                                            theme: 'twilight',
+                                            viewportMargin: Infinity,
+                                            value: pre.innerText
+                                        };
+                                        var codeMirrorEditor = CodeMirror(
+                                            function (elt) {
+                                                pre.parentNode.replaceChild(elt, pre);
+                                            },
+                                            codeMirrorOptions
+                                        );
+                                    }
                                 </script>
 
+                                <button onclick="makeEdit()">edit</button>
                                 <p>
                                     There are overlapping arcs in the lower left corner. We can remove them if we know their id and position in the
                                     heirarchy. There are several ways we can inspect this model, here are a few:
