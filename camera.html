@@ -44,8 +44,9 @@
                 //newScene.activeCamera.attachControl(canvas, false);
 
    		// Create an ArcRotateCamera aimed at 0,0,0, with no alpha, beta or radius, so be careful. It will look broken.
-   		var camera = new BABYLON.ArcRotateCamera("ArcRotateCamera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
-   		
+   		//var camera = new BABYLON.ArcRotateCamera("ArcRotateCamera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
+   		var camera = new BABYLON.ArcRotateCamera("Camera", 3 * Math.PI / 2, Math.PI / 8, 50, BABYLON.Vector3.Zero(), scene);
+		    
 		// Quick, let's use the setPosition() method... with a common Vector3 position, to make our camera better aimed.
    		//camera.setPosition(new BABYLON.Vector3(0, 15, -30));                
 
